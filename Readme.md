@@ -35,7 +35,7 @@ Bop.parse( Buffer data, [ Number startFromIndex ], [ Number limitResultsTo ], [ 
 
 > Change the pattern with a Buffer or String
 
-`javascript
+```javascript
 Bop.setPattern( String anotherPattern )
 Bop.setPattern( Buffer anotherPattern )
 ```
