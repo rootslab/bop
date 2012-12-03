@@ -83,7 +83,7 @@ the lesser are occurrences of pattern string into the text buffer. ( range: [1,5
 
 ```bash
   // with [NumberOfMegaBytes] [GapFactor] [patternString]
-  $ node bench/data-rate.js 700 4 "that'sallfolks"
+  $ node bench/small-pattern-data-rate.js 700 4 "that'sallfolks"
 ```
 
 ####Benchmark for big patterns
