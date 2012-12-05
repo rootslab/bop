@@ -53,7 +53,7 @@ var bop = BoyerParser( p ),
     results = bop.parse( t ),
     elapsed = Date.now() - stime;
 
-log( 'Results Matched:', results.length >>> 1 );
+log( 'Results Matched:', results.length );
 log( 'Time Elapsed:', elapsed / 1000 );
 log( 'Test Buffer Size:', bsize || defaultSize, 'MB' );
 log( 'Data Rate:', ( ( 8 * ( bsize || defaultSize ) / ( elapsed / 1000 ) ) / 1024 ).toFixed( 2 ), 'Gbit/s' );
