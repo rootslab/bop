@@ -11,10 +11,10 @@
 - it performs the comparisons from right to left.
 - preprocessing phase in __O(m+σ)__ time and space complexity.
 - searching phase in __O(m*n)__ time complexity.
-- 3 * n text character comparisons in the worst case when searching for a non periodic pattern.
+- __3*n__ text character comparisons in the worst case when searching for a non periodic pattern.
 - __O(n/m)__ best performance.
 
-> See [Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html).
+> See [Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html) for reference.
 
 
 ###Install
