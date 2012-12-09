@@ -4,6 +4,19 @@
  * It is optimized for using with pattern strings/buffers <= 255 chars/bytes.
  * It is ideal for parsing multipart/form-data streams, that have a pattern / boundary length < ~70 bytes.
 
+###Main features
+
+Given a m-length pattern and n-length data:
+
+- it performs the comparisons from right to left
+- preprocessing phase in O( m + σ ) time and space complexity
+- searching phase in O( m * n ) time complexity
+- 3 * n text character comparisons in the worst case when searching for a non periodic pattern
+- O( n / m ) best performance
+
+* http://www-igm.univ-mlv.fr/~lecroq/string/node14.html
+
+
 ###Install
 ```bash
 $ npm install bop [-g]

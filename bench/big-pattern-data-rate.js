@@ -44,6 +44,7 @@ log( '- copied', ( indexes.length ) , 'big patterns (' + pmb + 'MB) in test data
 stime = Date.now();
 results = bop.parse( data );
 etime = ( Date.now() - stime ) / 1000;
+log( '- test data was parsed in', etime, 'secs' );
 
 log( '- check if results length is equal to', indexes.length );
 assert.equal( results.length, indexes.length );
@@ -51,6 +52,5 @@ assert.equal( results.length, indexes.length );
 log( '- compare results and pre-defined indexes' );
 assert.deepEqual( results, indexes );
 
-log( '- test data was parsed in', etime, 'secs' );
 log( '- pre-processing data rate is:', ( 8 * mb / pptime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
 log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
