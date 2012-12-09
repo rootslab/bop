@@ -1,8 +1,8 @@
 var log = console.log,
     assert = require( 'assert' ),
     BoyerParser = require( '../' ).Bop,
-    mb = 100,
-    pmb = 2,
+    mb = 300,
+    pmb = 20,
     dlen = mb * 1024 * 1024,
     plen = pmb * 1024 * 1024,
     pattern = new Buffer( plen ),
@@ -13,18 +13,28 @@ var log = console.log,
     indexes = [],
     results = null,
     stime = 0,
-    etime = 0;
+    etime = 0,
+    // pre-process time
+    pptime = 0;
 
+log( '- benchmark for worst case with a big pattern, not sparse in data' );
+log( '- allocated %d MB of data', mb );
+
+stime = Date.now();
 for ( ; i < plen; ++i ) {
     rand = Math.floor( Math.random() * 255 * plen ) % 255;
     pattern[ i ] = rand; 
 }
-bop = BoyerParser( pattern );
-
-log( '- benchmark for worst case with a big pattern, not sparse in data' );
+log( '- created %d MB big pattern in %d secs', pmb, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
 
 stime = Date.now();
-for ( i = 0; i <= dlen - plen; i += 2 * plen ) {
+bop = BoyerParser( pattern );
+pptime = ( ( Date.now()- stime ) / 1000 ).toFixed( 1 );
+log( '- big pattern pre-processed in %d secs', pptime );
+
+
+stime = Date.now();
+for ( i = 0; i <= dlen - plen; i += 1.2 * plen ) {
     pattern.copy( data, i );
     indexes.push( i );
 }
@@ -42,4 +52,5 @@ log( '- compare results and pre-defined indexes' );
 assert.deepEqual( results, indexes );
 
 log( '- test data was parsed in', etime, 'secs' );
+log( '- pre-processing data rate is:', ( 8 * mb / pptime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
 log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
