@@ -12,6 +12,8 @@ var log = console.log,
     bop = null,
     indexes = [],
     results = null,
+    otime = 0,
+    ttime = 0,
     stime = 0,
     etime = 0,
     // pre-process time
@@ -20,6 +22,7 @@ var log = console.log,
 log( '- benchmark for worst case with a big pattern, not sparse in data' );
 log( '- allocated %d MB of data', mb );
 
+otime = Date.now();
 stime = Date.now();
 for ( ; i < plen; ++i ) {
     rand = Math.floor( Math.random() * 255 * plen ) % 255;
@@ -44,6 +47,7 @@ log( '- copied', ( indexes.length ) , 'big patterns (' + pmb + 'MB) in test data
 stime = Date.now();
 results = bop.parse( data );
 etime = ( Date.now() - stime ) / 1000;
+ttime = ( Date.now() - otime ) / 1000;
 log( '- test data was parsed in', etime, 'secs' );
 
 log( '- check if results length is equal to', indexes.length );
@@ -54,3 +58,6 @@ assert.deepEqual( results, indexes );
 
 log( '- pre-processing data rate is:', ( 8 * mb / pptime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
 log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
+log( '- total elapsed time:', ttime.toFixed( 2 ), 'secs' );
+log( '- resulting data-rate:', ( ( 8 * mb / ttime / 1024 ) ).toFixed( 2 ), 'Gbit/sec' );
+
