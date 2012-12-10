@@ -1,9 +1,10 @@
 var log = console.log,
     assert = require( 'assert' ),
-    BoyerParser = require( '../' ).Bop,
-    mb = 100,
+    //BoyerParser = require( '../' ).Bop,
+     BoyerParser = require( 'qap' ).Qap,
+    mb = 64,
     dlen = mb * 1024 * 1024,
-    plen = 16,
+    plen = 32,
     pattern = new Buffer( plen ),
     data = new Buffer( dlen ),
     i = 0,
@@ -33,7 +34,7 @@ bop = BoyerParser( pattern );
 pptime = ( ( Date.now()- stime ) / 1000 ).toFixed( 1 );
 log( '- big pattern pre-processed in %d secs', pptime );
 
-log( '- allocating %d MB of data', mb );
+log( '- allocating %d MB of test data', mb );
 stime = Date.now();
 for ( i = 0; i <= dlen - plen; i += 2 * plen ) {
     pattern.copy( data, i );
