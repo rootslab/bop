@@ -32,8 +32,8 @@ $npm test
 > Create an instance with a Buffer or String pattern. 
 
 ```javascript
-var Bop = require( 'Bop' ).Bop;
-var bop = Bop( String | Buffer pattern )
+Bop( String pattern )
+Bop( Buffer pattern )
 ```
 
 > List all pattern occurrences into a String or Buffer data.
@@ -41,16 +41,16 @@ var bop = Bop( String | Buffer pattern )
 
 ```javascript
 // slower with String
-bop.parse( String data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
+Bop#parse( String data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
 // faster with Buffer
-bop.parse( Buffer data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
+Bop#parse( Buffer data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
 ```
 
 > Change the pattern with a Buffer or String
 
 ```javascript
-bop.setPattern( String anotherPattern )
-bop.setPattern( Buffer anotherPattern )
+Bop#setPattern( String anotherPattern )
+Bop#setPattern( Buffer anotherPattern )
 ```
 
 ###Usage Example
