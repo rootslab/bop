@@ -19,20 +19,20 @@ var log = console.log,
     // pre-process time
     pptime = 0;
 
-log( '- benchmark for worst case with a big pattern, not sparse in data' );
+log( '- benchmark for worst case with a very short pattern' );
 
 stime = Date.now();
 for ( ; i < plen; ++i ) {
     rand = Math.floor( Math.random() * 255 * plen ) % 255;
     pattern[ i ] = rand; 
 }
-log( '- created %d MB big pattern in %d secs', plen, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
+log( '- created %d Bytes pattern in %d secs', plen, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
 
 otime = Date.now();
 stime = Date.now();
 bop = BoyerParser( pattern );
 pptime = ( ( Date.now()- stime ) / 1000 ).toFixed( 1 );
-log( '- big pattern pre-processed in %d secs', pptime );
+log( '- very short pattern pre-processed in %d secs', pptime );
 
 log( '- allocating %d MB of test data', mb );
 stime = Date.now();
@@ -41,7 +41,7 @@ for ( i = 0; i <= dlen - plen; i += 2 * plen ) {
     indexes.push( i );
 }
 log( '- test data buffer (' + mb + 'MB) created in', ( Date.now() - stime ) / 1000, 'secs' );
-log( '- copied', ( indexes.length ) , 'big patterns (' + plen + 'bytes) in test data' );
+log( '- copied', ( indexes.length ) , 'patterns (' + plen + 'bytes) in test data' );
 
 stime = Date.now();
 results = bop.parse( data );
