@@ -2,11 +2,11 @@
 [![build status](https://secure.travis-ci.org/rootslab/bop.png)](http://travis-ci.org/rootslab/bop)
  * Bop is a __very fast__ Boyer-Moore parser for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 chars/bytes.
- * It is ideal for parsing multipart/form-data streams, that have a pattern / boundary length < ~70 bytes.
+ * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
 
 ###Main features
 
-> Given a m-length pattern and n-length data:
+> Given a m-length pattern and n-length data, and σ-length alphabet ( σ = 256 ):
 
 - it performs the comparisons from right to left.
 - preprocessing phase in __O(m+σ)__ time and space complexity.
