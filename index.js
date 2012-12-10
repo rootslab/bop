@@ -1,2 +1,1 @@
-module.exports = require( './lib/bop' ).Bop;
-
+module.exports = require( './lib/bop' );
