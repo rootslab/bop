@@ -56,7 +56,7 @@ log( '- compare results and pre-defined indexes' );
 assert.deepEqual( results, indexes );
 
 log( '- pre-processing data rate is:', ( 8 * mb / pptime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
-log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 2 ), 'Gbit/sec' );
+log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 4 ), 'Gbit/sec' );
 log( '- total elapsed time:', ttime.toFixed( 2 ), 'secs' );
-log( '- resulting data-rate:', ( ( 8 * mb / ttime / 1024 ) ).toFixed( 2 ), 'Gbit/sec' );
+log( '- resulting data-rate:', ( ( 8 * mb / ttime / 1024 ) ).toFixed( 4 ), 'Gbit/sec' );
 
