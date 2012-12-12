@@ -17,7 +17,11 @@ var log = console.log,
     stime = 0,
     etime = 0,
     // pre-process time
-    pptime = 0;
+    pptime = 0,
+    // memory usage
+    smem = null,
+    emem = null;
+
 
 log( '- benchmark for worst case with a big pattern, not sparse in data' );
 
@@ -28,10 +32,13 @@ for ( ; i < plen; ++i ) {
 }
 log( '- created %d MB big pattern in %d secs', pmb, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
 
+smem = process.memoryUsage();
+
 otime = Date.now();
 stime = Date.now();
 bop = BoyerParser( pattern );
 pptime = ( ( Date.now()- stime ) / 1000 ).toFixed( 1 );
+emem = process.memoryUsage();
 log( '- big pattern pre-processed in %d secs', pptime );
 
 log( '- allocating %d MB of data', mb );
@@ -60,3 +67,5 @@ log( '- parsing data rate is:', ( 8 * mb / etime / 1024 ).toFixed( 4 ), 'Gbit/se
 log( '- total elapsed time:', ttime.toFixed( 2 ), 'secs' );
 log( '- resulting data-rate:', ( ( 8 * mb / ttime / 1024 ) ).toFixed( 4 ), 'Gbit/sec' );
 
+log( '- tables memory usage is %d MBytes', ( ( emem.rss - smem.rss ) / ( 1024 * 1024 ) ).toFixed( 1 ) );
+log( '- tables v8++ heap usage is %d MBytes', ( ( emem.heapUsed - smem.heapUsed ) / ( 1024 * 1024 ) ).toFixed( 1 ) );
