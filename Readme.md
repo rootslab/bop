@@ -79,30 +79,41 @@ assert.deepEqual( results, bresults );
 console.log( results, bresults );
 ```
 
-####Benchmark for small patterns
+####Benchmark for a short pattern ( length <= 255 bytes )
+
+> Parser uses 3 Buffers 256-bytes long to build shifting tables for small patterns:
+
+> - Very low memory footprint.
+> - Ultra fast to preprocess pattern ( = tables creation ).
 
 ```bash
   $ node bench/small-pattern-data-rate
 ```
-for default :
 
-> - uses a pattern string of 57 bytes/chars
-> - builds a data buffer of 700 MB in memory
-> - uses a redundancy factor for pattern strings. The bigger the value, 
-the lesser are occurrences of pattern string into the text buffer. ( range: [1,5] )
+for default it:
+
+> - uses a pattern string of 57 bytes/chars.
+> - builds a data buffer of 700 MB in memory.
+> - uses a redundancy/distance factor for pattern strings equal to 2. The bigger the value, 
+the lesser are occurrences of pattern string into the text buffer.
 
  **Custom Usage**:
 
 ```bash
-  # with [TestBufferMB] [distanceFactor] [stringPattern]
+  # with [testBufferSizeInMB] [distanceFactor] [aStringPattern]
   $ node bench/small-pattern-data-rate.js 700 4 "that'sallfolks"
 ```
 
-####Benchmark for big patterns
+####Benchmark for a big pattern ( length > 255 bytes )
+
+> Parser uses 3 arrays to build shifting tables for big patterns, then:
+
+> - there will be an high memory consumption, due to the use of arrays.
+> - it will take a long time to preprocess pattern ( = tables creation ).
 
 ```bash
   $ node bench/big-pattern-data-rate
 ```
 
-> - it uses a pattern size of 20MB
-> - builds a data buffer of 300MB copying pattern 12 times
+> - it uses a very big pattern ( 20 MBytes ).
+> - it builds a data buffer of 300 MBytes, copying the same pattern 12 times.
