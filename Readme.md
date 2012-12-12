@@ -94,7 +94,7 @@ the lesser are occurrences of pattern string into the text buffer. ( range: [1,5
  **Custom Usage**:
 
 ```bash
-  // with [NumberOfMegaBytes] [GapFactor] [patternString]
+  # with [TestBufferMB] [distanceFactor] [stringPattern]
   $ node bench/small-pattern-data-rate.js 700 4 "that'sallfolks"
 ```
 
