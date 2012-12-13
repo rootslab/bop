@@ -2,9 +2,8 @@ var log = console.log,
     t = require( './tables' );
 
 // stuff 
-log( '- building and pre-processing a very big pattern..' );
-
 var mb = 20,
+    msg = log( '- building and pre-processing a very big pattern.. (%dMB)', mb ),
     smem = process.memoryUsage(),
     bp = new Buffer( 1024 * 1024 * mb ),
     emem0 = process.memoryUsage(),
@@ -16,12 +15,12 @@ var mb = 20,
     emem3 = process.memoryUsage(),
     // output results
     output = function ( n, e, s, t ) {
-        log( '- %s buffer length is %d bytes', n, t );
+        log( '- %s length is %s', n, t );
         log( '- %s mem usage: %d KBytes', n, ( ( e.rss - s.rss ) / 1024 ).toFixed( 1 ) );
         log( '- %s heap usage: %d KBytes', n, ( ( e.heapUsed - s.heapUsed ) / 1024 ).toFixed( 1 ) );
     };
 
-output( 'pattern', emem0, smem, bp.length );
-output( 'bc', emem1, emem0, bc.length );
-output( 'suff', emem2, emem1, suff.length );
-output( 'gs', emem3, emem2, gs.length );
+output( '<pattern>', emem0, smem, bp.length + ' bytes' );
+output( '[bc]', emem1, emem0, bc.length );
+output( '[suff]', emem2, emem1, suff.length );
+output( '[gs]', emem3, emem2, gs.length );
