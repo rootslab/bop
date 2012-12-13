@@ -118,3 +118,5 @@ the lesser are occurrences of pattern string into the text buffer.
 
 > - it uses a very big pattern ( 20 MBytes ).
 > - it builds a data buffer of 300 MBytes, copying the same pattern 12 times.
+
+See [bench](./tree/master/bench) dir.
