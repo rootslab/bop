@@ -1,6 +1,6 @@
 module.exports = {
     // bad char table
-    bcTable = function ( x ) {
+    bcTable : function ( x ) {
         var m = x.length,
             bc = ( m > 255 ) ? [] : new Buffer( 256 ),
             i = 0,
