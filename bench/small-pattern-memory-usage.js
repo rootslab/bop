@@ -16,11 +16,10 @@ var bytes = 255,
     // output results
     output = function ( n, e, s, t ) {
         log( '- %s length is %s bytes', n, t );
-        log( '- %s mem usage: %d KBytes', n, ( ( e.rss - s.rss ) / 1024 ).toFixed( 1 ) );
-        log( '- %s heap usage: %d KBytes', n, ( ( e.heapUsed - s.heapUsed ) / 1024 ).toFixed( 1 ) );
+        log( '- %s mem usage is %d KBytes', n, ( ( e.rss - s.rss ) / 1024 ).toFixed( 1 ) );
+        log( '- %s heap usage is %d KBytes', n, ( ( e.heapUsed - s.heapUsed ) / 1024 ).toFixed( 1 ) );
     };
 
-output( '<pattern>', emem0, smem, bp.length );
 output( '<bc>', emem1, emem0, bc.length );
 output( '<suff>', emem2, emem1, suff.length );
 output( '<gs>', emem3, emem2, gs.length );
