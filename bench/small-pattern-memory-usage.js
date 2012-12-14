@@ -11,7 +11,7 @@ var bytes = 255,
     emem1 = process.memoryUsage(),
     suff = t.suffixes( bp ),
     emem2 = process.memoryUsage(),
-    gs = t.gsTable( bp, suff ),
+    gs = t.gsTable( suff ),
     emem3 = process.memoryUsage(),
     // output results
     output = function ( n, e, s, t ) {

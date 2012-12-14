@@ -1,42 +1,36 @@
 module.exports = {
     // bad char table
-    bcTable : function ( x ) {
-        var m = x.length,
+    bcTable : function ( p ) {
+        var m = p.length,
             bc = ( m > 255 ) ? [] : new Buffer( 256 ),
             i = 0,
             blen = bc.length || m;
         for ( ; i < blen; bc[ i++ ] = m );
         for ( i = 0; i < m - 1; ++i ) {
-            bc[ x[ i ] ] = m - i - 1;
+            bc[ p[ i ] ] = m - i - 1;
         }
         return bc;
     },
     // suffixes table
-    suffixes : function ( x ) {
-        var m = x.length,
+    suffixes : function ( p ) {
+        var m = p.length,
             g = m - 1,
             suff = ( m > 255 ) ? [] : new Buffer( m ),
             f = 0,
             i = 0,
-            offset = 0,
-            point = 0,
-            curr = 0,
-            val = 0;
+            offset = 0;
         for ( ; i < m - 1; suff[ i++ ] = 0 );
         suff[ i ] = m;
         offset = m - 1 - f;
         // let i => m - 2
         for ( --i; i >= 0; --i ) {
-            point = i - g;
-            curr = i + offset;
-            val = suff[ curr ];
-            if ( ( point !== val ) && ( point > 0 ) ) {
-                suff[ i ] = Math.min( val, point );
+            if ( ( i > g ) && ( suff[ i + offset ] !== ( i - g ) ) ) {
+                suff[ i ] = Math.min( suff[ i + offset ], i - g );
             } else {
                 g = Math.min( g, i );
                 f = i;
                 offset = m - 1 - f;
-                while ( ( g >= 0 ) && ( x[ g ] === x [ g + offset ] ) ) {
+                while ( ( g >= 0 ) && ( p[ g ] === p[ g + offset ] ) ) {
                     --g;
                     suff[ i ] = f - g;
                 }
@@ -45,8 +39,8 @@ module.exports = {
         return suff;
     },
     // good suffixes table
-    gsTable : function ( x, suff ) {
-        var m = x.length,
+    gsTable : function ( suff ) {
+        var m = suff.length,
             gsuff = ( m > 255 ) ? [] : new Buffer( m ),
             i = m - 2,
             j = 0,
