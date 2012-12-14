@@ -3,7 +3,7 @@ var log = console.log,
 
 // stuff
 var bytes = 255,
-    msg = log( '- building and pre-processing a short pattern..' ),
+    msg = log( '- building and pre-processing a short pattern.. (%d bytes)' ),
     smem = process.memoryUsage(),
     bp = new Buffer( bytes ),
     emem0 = process.memoryUsage(),
