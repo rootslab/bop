@@ -29,19 +29,20 @@ var log = console.log,
             } 
         }
         mtime = Date.now() - s;
-        log( ' - current pattern:', JSON.stringify( p.toString() ) );
-        log( ' - pattern copied %d times in test buffer', indexes.length ); 
-        log( ' - pattern length is %d bytes', len );
-        log( ' - current gap factor is', ( gapFactor ) ? gapFactor : 3 ); 
-        log( ' - patterns gap (distance) is %d KBytes', ( gap / 1024 ).toFixed( 2 ) );
+        log( '- current pattern:', JSON.stringify( p.toString() ) );
+        log( '- pattern copied %d times in test buffer', indexes.length ); 
+        log( '- pattern length is %d bytes', len );
+        log( '- current gap factor is', ( gapFactor ) ? gapFactor : 3 ); 
+        log( '- patterns gap (distance) is %d KBytes', ( gap / 1024 ).toFixed( 2 ) );
         // log( ' - plength / pgap:', len / gap );
-        log( ' - buffer creation time:', mtime / 1000, 'secs' ); 
+        log( '- buffer creation time:', mtime / 1000, 'secs' ); 
         return t;
     },
     bsize,
     gapfactor,
     pattern = '---------------------------2046863043300497616870820724\r\n';
 
+// read custom arguments
 process.argv.forEach( function ( val, index, array ) {
     ( index === 2 ) ? ( bsize = parseInt( val, 10 ) )  : null; 
     ( index === 3 ) ? ( gapfactor = parseInt( val, 10 ) )  : null;
@@ -49,6 +50,7 @@ process.argv.forEach( function ( val, index, array ) {
 } );
 
 var p = new Buffer( pattern ),
+    msg = log( '- building test buffer' ),
     t = buildTestBuffer( p, bsize, gapfactor ),
     smem = process.memoryUsage(),
     bop = BoyerParser( p ),
@@ -57,16 +59,16 @@ var p = new Buffer( pattern ),
     results = bop.parse( t ),
     elapsed = Date.now() - stime;
 
-log( ' - test buffer size is %d MBytes', bsize || defaultSize );
+log( '- test buffer size is %d MBytes', bsize || defaultSize );
 
-log( ' - check if results length is equal to', indexes.length );
+log( '- check if results length is equal to', indexes.length );
 assert.equal( results.length, indexes.length );
 
-log( ' - compare results and pre-defined indexes' );
+log( '- compare results and pre-defined indexes' );
 assert.deepEqual( results, indexes );
 
-log( ' - tables memory usage is %d KBytes', ( ( emem.rss - smem.rss ) / 1024 ).toFixed( 1 ) );
-log( ' - tables v8++ heap usage is %d KBytes', ( ( emem.heapUsed - smem.heapUsed ) / 1024 ).toFixed( 1 ) );
-log( ' - results matched are', results.length );
-log( ' - total elapsed time is %d secs', elapsed / 1000 );
-log( ' - parsing data rate is %d Gbit/s', ( ( 8 * ( bsize || defaultSize ) / ( elapsed / 1000 ) ) / 1024 ).toFixed( 2 ) );
+log( '- tables memory usage is %d KBytes', ( ( emem.rss - smem.rss ) / 1024 ).toFixed( 1 ) );
+log( '- tables v8++ heap usage is %d KBytes', ( ( emem.heapUsed - smem.heapUsed ) / 1024 ).toFixed( 1 ) );
+log( '- results matched are', results.length );
+log( '- total elapsed time is %d secs', elapsed / 1000 );
+log( '- parsing data rate is %d Gbit/s', ( ( 8 * ( bsize || defaultSize ) / ( elapsed / 1000 ) ) / 1024 ).toFixed( 2 ) );
