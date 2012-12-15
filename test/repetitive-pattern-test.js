@@ -20,6 +20,7 @@ log( '- create a Buffer copying 2 patterns side by side' );
 bpattern = new Buffer( spattern );
 bpattern.copy( data, bpattern.length );
 bpattern.copy( data, ( bpattern.length * 2 ) );
+
 log( '- parse data for patterns and get results' );
 var bop = BoyerParser( bpattern ),
     results = bop.parse( data );

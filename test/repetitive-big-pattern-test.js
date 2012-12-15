@@ -28,9 +28,6 @@ log( '- parse data for patterns and get results' );
 var bop = BoyerParser( bpattern ),
     results = bop.parse( data );
 
-// log( results, bpattern.length );
-// log( indexes )
-// log( data.slice( 2709, 2720), bpattern )
 log( '- check results length, it should be equal to ' + n );
 assert.equal( results.length, n, 'results length is wrong, must be ' + n + ', now it\'s ' + results.length );
 

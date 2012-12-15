@@ -23,7 +23,7 @@ assert.notEqual( undefined, bop.bc[ 255 ], 'lookup table for this pattern should
 log( '- test array creation if pattern length is >= 256' );
 bpattern = new Buffer( osize );
 bop = Bop( bpattern );
-log( '. create %d pattern long, with all bytes equal to 0xff', bpattern.length );
+log( '- create %d pattern long, with all bytes equal to 0xff', bpattern.length );
 for ( var i = 0; i < osize; ++i ) {
     bpattern[ i ] = 0xff;
 }
