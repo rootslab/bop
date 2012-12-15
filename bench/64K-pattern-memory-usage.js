@@ -1,8 +1,7 @@
 var log = console.log,
-    t = require( './tables' );
-
-// stuff
-var kb = 64,
+    t = require( './tables' ),
+    // stuff
+    kb = 64,
     msg = log( '- building and pre-processing a %dKB pattern..', kb ),
     smem = process.memoryUsage(),
     bp = new Buffer( 1024 * kb ),

@@ -1,9 +1,8 @@
 var log = console.log,
-    t = require( './tables' );
-
-// stuff
-var bytes = 255,
-    msg = log( '- building and pre-processing a short pattern.. (%d bytes)' ),
+    t = require( './tables' ),
+    // stuff
+    bytes = 255,
+    msg = log( '- building and pre-processing a short pattern.. (%d bytes)', bytes ),
     smem = process.memoryUsage(),
     bp = new Buffer( bytes ),
     emem0 = process.memoryUsage(),
