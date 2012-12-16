@@ -81,7 +81,7 @@ console.log( results, bresults );
 
 ####Benchmark for a short pattern ( length <= 255 bytes )
 
-> Parser uses 3 Buffers 256-bytes long to build shifting tables for small patterns:
+> Parser uses 3 Buffers 256-bytes long to build shifting tables, then:
 
 > - Pattern parsing / table creation space and time complexity is O(σ).
 > - Very low memory footprint.
