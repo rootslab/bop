@@ -21,36 +21,50 @@
 ```bash
 $ npm install bop [-g]
 ```
+
+> __require__:
+
+```javascript
+var Bop = require( 'bop' ).Bop;
+```
+
 ###Run Tests
 
 ```javascript
 $cd bop/
 $npm test
 ```
-###Signatures
+
+###Constructor
 
 > Create an instance with a Buffer or String pattern. 
 
 ```javascript
 Bop( String pattern )
+// or
 Bop( Buffer pattern )
+// and also
+new Bop( .. )
 ```
+
+### Methods
 
 > List all pattern occurrences into a String or Buffer data.
 > It returns a new array of indexes, or populates an array passed as the last argument to parse method.
 
 ```javascript
 // slower with String
-Bop#parse( String data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
+Bop#parse( String data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : []
 // faster with Buffer
-Bop#parse( Buffer data, [ Number startFromIndex ], [ Number limitResultsTo ], [ Array array ] ) : []
+Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : []
 ```
 
-> Change the pattern with a Buffer or String
+> Change the pattern :
 
 ```javascript
-Bop#setPattern( String anotherPattern )
-Bop#setPattern( Buffer anotherPattern )
+Bop#setPattern( String anotherPattern ) : Buffer
+// or
+Bop#setPattern( Buffer anotherPattern ) : Buffer
 ```
 
 ###Usage Example
