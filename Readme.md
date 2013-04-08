@@ -54,9 +54,9 @@ new Bop( .. )
 
 ```javascript
 // slower with String
-Bop#parse( String data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : []
+Bop#parse( String data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 // faster with Buffer
-Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : []
+Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 ```
 
 > Change the pattern :
