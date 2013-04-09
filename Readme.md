@@ -14,8 +14,7 @@
 - __3*n__ text character comparisons in the worst case when searching for a non periodic pattern.
 - __O(n/m)__ best performance.
 
-> See [Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html) for reference.
-
+> See [Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html) for reference and also [Qap](https://github.com/rootslab/qap), a QuickSearch parser.
 
 ###Install
 ```bash
