@@ -44,8 +44,8 @@ var log = console.log,
 
 // read custom arguments
 process.argv.forEach( function ( val, index, array ) {
-    ( index === 2 ) ? ( bsize = parseInt( val, 10 ) )  : null; 
-    ( index === 3 ) ? ( gapfactor = parseInt( val, 10 ) )  : null;
+    ( index === 2 ) ? ( bsize = parseInt( val, 10 ) ) : null; 
+    ( index === 3 ) ? ( gapfactor = parseInt( val, 10 ) ) : null;
     ( index === 4 ) ? ( pattern = ( ( val.length > 1 ) && ( val.length < 255 ) ) ? ( '--' + val + '\r\n' ) : pattern ) : null;  
 } );
 
