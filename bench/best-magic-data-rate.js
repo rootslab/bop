@@ -24,7 +24,8 @@ var log = console.log,
         log( '- now parsing test buffer with magic algorithm..' );
         for( stime = Date.now(); i < dlen; i += plen ) {
             // access data and compare current byte with the last byte of pattern,
-            // then skip plen bytes, no comparison.
+            // then skip plen bytes, no other comparison.
+            // ( best performance O(m/n) )
             if( pchar === data[ i ] ) {
                 // ..
             }
