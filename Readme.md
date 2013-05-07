@@ -1,5 +1,5 @@
 ###BoyerParser 
-[![build status](https://secure.travis-ci.org/rootslab/bop.png?branch=master)](http://travis-ci.org/rootslab/bop)
+[![build status](https://secure.travis-ci.org/rootslab/bop.png?branch=master)](http://travis-ci.org/rootslab/bop) [![NPM version](https://badge.fury.io/js/bop.png)](http://badge.fury.io/js/bop)
  * Bop is a __very fast__ Boyer-Moore parser for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
  * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
