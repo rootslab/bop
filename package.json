@@ -1,20 +1,29 @@
 {
     "name" : "bop"
-  , "version" : "1.1.9"
-  , "description" : "Bop is a very fast Boyer-Moore parser/matcher optimized for string and buffer patterns (<= 255 bytes), then it is ideal for parsing multipart/form-data streams, that have a pattern / boundary length < ~70 bytes."
+  , "version" : "2.0.0"
+  , "description" : "Bop, an ultra fast Boyer-Moore parser/matcher optimized for string and buffer patterns (<= 255 bytes), then it is ideal for parsing multipart/form-data streams, that have a pattern / boundary length < ~70 bytes."
   , "homepage" : "https://github.com/rootslab/bop"
   ,"repository" : {
         "type" : "git"
         ,"url" : "git://github.com/rootslab/bop.git"
-    }
-  , "keywords" : [ "parser", "boyer-moore", "boyer", "buffer", "pattern", "string", "matching" ]
-  , "tags":[ "parser", "boyer-moore", "boyer", "buffer", "pattern matching", "string parser" ]
+  },
+  "keywords" : [
+    "parser",
+    "boyer moore",
+    "buffer",
+    "pattern",
+    "string",
+    "pattern matching",
+    "search",
+    "ultra fast"
+   ]
   , "author" : "Guglielmo Ferri <44gatti@gmail.com>"
   , "dependencies" : {}
   , "main": "index"
   , "engines" : { "node" : ">=0.4.x" }
   , "scripts" : {
-        "test" : "bash test/run.sh"
+        "test" : "bash test/run.sh",
+        "bench" : "bash bench/run.sh"
   }
   , "license": "MIT"
   , "readmeFilename": "REAME.md"

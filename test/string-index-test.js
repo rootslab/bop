@@ -1,18 +1,14 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    Bop = require( '../' ).Bop,
-    crlf = '\r\n',
-    crlfcrlf = '\r\n\r\n', 
-    pattern = 'bacicc\r\n\r\n',
-    data = 'ambara' + pattern + 'icocco\r\n\r\tregallinesulcom' + pattern + 'obacicc\r\n\ri',
-    qcrlf = Bop( crlf ),
-    qcrlfcrlf = Bop( crlfcrlf ),
-    qpattern = Bop( pattern );
-
-// log( '- crlf:', crlf );
-// log( 'crlfcrlf:', crlfcrlf );
-// log( '- pattern:', pattern );
-// log( '- data:', data );
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , crlf = '\r\n'
+    , crlfcrlf = crlf + crlf
+    , pattern = 'bacicc\r\n\r\n'
+    , data = 'ambara' + pattern + 'icocco\r\n\r\tregallinesulcom' + pattern + 'obacicc\r\n\ri'
+    , qcrlf = Bop( crlf )
+    , qcrlfcrlf = Bop( crlfcrlf )
+    , qpattern = Bop( pattern )
+    ;
 
 log( '- parse data from index 7 returns only one result (index 41)' )
 assert.equal( 41, qpattern.parse( data, 7 ), 'results don\'t match' );

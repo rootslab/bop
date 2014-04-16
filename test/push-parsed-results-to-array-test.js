@@ -1,9 +1,10 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    Bop = require( '../' ).Bop,
-    crlf = '\r\n',
-    data =  new Buffer( '\r' + crlf + crlf + 'tregallinesulcomo' + crlf + '\r' ),
-    qcrlf = Bop( crlf );
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , crlf = '\r\n'
+    , data =  new Buffer( '\r' + crlf + crlf + 'tregallinesulcomo' + crlf + '\r' )
+    , qcrlf = Bop( crlf )
+    ;
 
 log( '- passing a array != null to the parse method' );
 var arr = [ 'a-weird-result' ],

@@ -1,23 +1,25 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    BoyerParser = require( '../' ).Bop,
-    pattern = '-----hellofolks!\r\n\r\n',
-    bpattern = new Buffer( pattern ),
-    plen = pattern.length,
-    mb = 10,
-    dlen = mb * 1024 * 1024,
-    data = new Buffer( dlen ),
-    bop = BoyerParser( bpattern ),
-    occ = Math.floor( dlen / plen / plen / plen / plen ),
-    i = 0,
-    indexes = [],
-    stime = Date.now();
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , pattern = '-----hellofolks!\r\n\r\n'
+    , bpattern = new Buffer( pattern )
+    , plen = pattern.length
+    , mb = 10
+    , dlen = mb * 1024 * 1024
+    , data = new Buffer( dlen )
+    , bop = Bop( bpattern )
+    , occ = Math.floor( dlen / plen / plen / plen / plen )
+    , i = 0
+    , indexes = []
+    , stime = Date.now()
+    ;
 
 log( '- creating test buffer..(' + mb +' MB)' );
+
 for ( ; i < dlen - pattern.length; i += pattern.length + ++occ ) {
     indexes.push( i );
     bpattern.copy( data, i );
-}
+};
 
 log( '- buffer data copied in',( Date.now() - stime ) / 1000, 'secs' );
 log( '- pattern length:', bpattern.length, 'bytes' );

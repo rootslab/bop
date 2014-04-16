@@ -1,9 +1,9 @@
-var log = console.log,
-    dlength = 700,
-    stime = 0,
-    boundary = new Buffer( 57 ),
+var log = console.log
+    , dlength = 700
+    , stime = 0
+    , boundary = new Buffer( 57 )
     // build test data to parse
-    data = ( function () {
+    , data = ( function () {
         var test = new Buffer( dlength * 1024 * 1024),
             t = 0,
             tlen = test.length;
@@ -13,9 +13,9 @@ var log = console.log,
         }
         log( '- test buffer created..' );
         return test;
-    } )(),
+    } )()
     // crook parse method
-    magicParse = function ( pattern, data ) {
+    , magicParse = function ( pattern, data ) {
         var i = 0,
             dlen = data.length,
             plen = pattern.length,
@@ -33,10 +33,11 @@ var log = console.log,
             }
         }
         return [];
-    },
-    results = magicParse( boundary, data ),
-    duration = ( Date.now() - stime ),
-    datarate = ( ( dlength / duration ) * ( 7.8125 ) );
+    }
+    , results = magicParse( boundary, data )
+    , duration = ( Date.now() - stime )
+    , datarate = ( ( dlength / duration ) * ( 7.8125 ) )
+    ;
 
 log( '- elapsed time is; %d millis (I\'m the best!)', duration );
 log( '- datarate is: %d Gbit/sec (Magic!)', ( datarate ).toFixed( 2 ) );

@@ -1,5 +1,10 @@
-###BoyerParser 
+###Bop, a Boyer Moore Parser
 [![build status](https://secure.travis-ci.org/rootslab/bop.png?branch=master)](http://travis-ci.org/rootslab/bop) [![NPM version](https://badge.fury.io/js/bop.png)](http://badge.fury.io/js/bop)
+
+[![NPM](https://nodei.co/npm/qap.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
+
+[![NPM](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
+
  * Bop is a __very fast__ Boyer-Moore parser for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
  * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
@@ -14,7 +19,7 @@
 - __3*n__ text character comparisons in the worst case when searching for a non periodic pattern.
 - __O(n/m)__ best performance.
 
-> See [Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html) for reference and also [Qap](https://github.com/rootslab/qap), a QuickSearch parser.
+> See __[Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html)__ for reference and also __[Qap](https://github.com/rootslab/qap)__, a QuickSearch parser.
 
 ###Install
 ```bash
@@ -24,7 +29,7 @@ $ npm install bop [-g]
 > __require__:
 
 ```javascript
-var Bop = require( 'bop' ).Bop;
+var Bop = require( 'bop' );
 ```
 
 ###Run Tests
@@ -34,16 +39,21 @@ $cd bop/
 $npm test
 ```
 
+###Run Benchmarks
+
+```bash
+$ cd bop/
+$ npm run-script bench
+```
+
 ###Constructor
 
 > Create an instance with a Buffer or String pattern. 
 
 ```javascript
-Bop( String pattern )
+Bop( Buffer || String pattern )
 // or
-Bop( Buffer pattern )
-// and also
-new Bop( .. )
+new Bop( Buffer | String pattern )
 ```
 
 ### Methods
@@ -54,6 +64,7 @@ new Bop( .. )
 ```javascript
 // slower with String
 Bop#parse( String data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
+
 // faster with Buffer
 Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 ```
@@ -61,28 +72,26 @@ Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Arra
 > Change the pattern :
 
 ```javascript
-Bop#setPattern( String anotherPattern ) : Buffer
-// or
-Bop#setPattern( Buffer anotherPattern ) : Buffer
+Bop#set( Buffer || String pattern ) : Buffer
 ```
 
 ###Usage Example
 
 ```javascript
-var assert = require( 'assert' ),
-    BoyerParser = require( './bop' ).BoyerParser, // or Bop
-    pattern = 'hellofolks\r\n\r\n',
-    text = 'hehe' + pattern +'loremipsumhellofolks\r\n' + pattern;
-
-// create a Bop instance that parses the pattern
-var bop = BoyerParser( pattern ),
+var assert = require( 'assert' )
+    , Bop = require( './bop' )
+    , pattern = 'hellofolks\r\n\r\n'
+    , text = 'hehe' + pattern +'loremipsumhellofolks\r\n' + pattern
+	// create a Bop instance that parses the pattern
+	, bop = Bop( pattern )
 	// parse data from beginning
-	results = bop.parse( text );
+	, results = bop.parse( text )
+	;
 
-// change pattern with a buffer
-bop.setPattern( new Buffer( pattern ) );
+// change pattern
+bop.set( new Buffer( pattern ) );
 
-// re-parse data passing a Buffer instance instead of a String
+// re-parse data passing a Buffer instead of a String
 var bresults = bop.parse( new Buffer( text ) );
 
 // results are the same
@@ -132,7 +141,7 @@ the lesser are occurrences of pattern string into the text buffer.
 > - it uses a very big pattern ( 20 MBytes ).
 > - it builds a data buffer of 300 MBytes, copying the same pattern 12 times.
 
-See [bench](https://github.com/rootslab/bop/tree/master/bench) dir.
+See __[bench](./bench)__ dir.
 
 
 ### MIT License

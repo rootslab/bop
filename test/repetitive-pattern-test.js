@@ -1,20 +1,23 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    BoyerParser = require( '../' ).Bop,
-    spattern = '-----hello',
-    splen = spattern.length,
-    n = 1, // 2^n times
-    tlen = splen * n,
-    indexes = [],
-    data = new Buffer( 256 ),
-    dlen = data.length,
-    bpattern = null,
-    i = 0;
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , spattern = '-----hello'
+    , splen = spattern.length
+    // 2^n times
+    , n = 1
+    , tlen = splen * n
+    , indexes = []
+    , data = new Buffer( 256 )
+    , dlen = data.length
+    , bpattern = null
+    , i = 0
+    ;
 
 log( '- create pattern with 2 sub-pattern side by side' );
+
 for ( ; i < n; ++i ) {
     spattern += spattern;
-} 
+};
 
 log( '- create a Buffer copying 2 patterns side by side' );
 bpattern = new Buffer( spattern );
@@ -22,7 +25,7 @@ bpattern.copy( data, bpattern.length );
 bpattern.copy( data, ( bpattern.length * 2 ) );
 
 log( '- parse data for patterns and get results' );
-var bop = BoyerParser( bpattern ),
+var bop = Bop( bpattern ),
     results = bop.parse( data );
 
 log( '- check if the parse method returns exactly 3 results' );

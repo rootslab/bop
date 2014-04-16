@@ -1,52 +1,56 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    BoyerParser = require( '../' ).Bop,
-    mb = 300,
-    pmb = 20,
-    dlen = mb * 1024 * 1024,
-    plen = pmb * 1024 * 1024,
-    pattern = new Buffer( plen ),
-    data = new Buffer( dlen ),
-    i = 0,
-    rand = 0,
-    bop = null,
-    indexes = [],
-    results = null,
-    otime = 0,
-    ttime = 0,
-    stime = 0,
-    etime = 0,
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , mb = 300
+    , pmb = 20
+    , dlen = mb * 1024 * 1024
+    , plen = pmb * 1024 * 1024
+    , pattern = new Buffer( plen )
+    , data = new Buffer( dlen )
+    , i = 0
+    , rand = 0
+    , bop = null
+    , indexes = []
+    , results = null
+    , otime = 0
+    , ttime = 0
+    , stime = 0
+    , etime = 0
     // pre-process time
-    pptime = 0,
+    , pptime = 0
     // memory usage
-    smem = null,
-    emem = null;
-
+    , smem = null
+    , emem = null
+    ;
 
 log( '- benchmark for worst case with a big pattern, not sparse in data' );
 
 stime = Date.now();
+
 for ( ; i < plen; ++i ) {
     rand = Math.floor( Math.random() * 255 * plen ) % 255;
     pattern[ i ] = rand; 
-}
+};
+
 log( '- created %d MB big pattern in %d secs', pmb, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
 
 smem = process.memoryUsage();
 
 otime = Date.now();
 stime = Date.now();
-bop = BoyerParser( pattern );
+bop = Bop( pattern );
 pptime = ( ( Date.now()- stime ) / 1000 ).toFixed( 1 );
 emem = process.memoryUsage();
 log( '- big pattern pre-processed in %d secs', pptime );
 
 log( '- allocating %d MB of data', mb );
 stime = Date.now();
+
 for ( i = 0; i <= dlen - plen; i += 1.2 * plen ) {
     pattern.copy( data, i );
     indexes.push( i );
-}
+};
+
 log( '- test data buffer (' + mb + 'MB) created in', ( Date.now() - stime ) / 1000, 'secs' );
 log( '- copied', ( indexes.length ) , 'big patterns (' + pmb + 'MB) in test data' );
 

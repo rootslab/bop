@@ -1,6 +1,7 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    Bop = require( '../' ).Bop;
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    ;
 
 log( '- passing a String to constructor, doesn\'t throw an Error.' );
 assert.doesNotThrow(

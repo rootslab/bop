@@ -1,24 +1,28 @@
-var log = console.log,
-    assert = require( 'assert' ),
-    BoyerParser = require( '../' ).Bop,
-    defaultSize = 700.1, //megabytes
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    //megabytes
+    , defaultSize = 700.1
     // pre-record indexes
-    indexes = [],
+    , indexes = []
     // build a weird buffer
-    buildTestBuffer = function( p, MBsize, gapFactor ){
-        var s = Date.now(),
-            mtime = 0,
-            len = p.length,
-            gap = Math.pow( len, ( gapFactor && gapFactor > 1 ) ? gapFactor : 3 ),
-            mb =  1024 * 1024,
-            size = MBsize || defaultSize,
-            tSize = parseInt( size * mb, 10 ),
-            logp = Math.log( len ), // log bt
-            logt = Math.log( tSize ), // log a
-            logr = logt / logp,
-            maxLenPower = parseInt( logr, 10 ),
-            str = '\r\nContent-Disposition: form-data\r\nLorem\
-                    Ipsum et Dolor sit amet, Quisquisce\r\n\r\n';
+    , buildTestBuffer = function ( p, MBsize, gapFactor ) {
+        var s = Date.now()
+            , mtime = 0
+            , len = p.length
+            , gap = Math.pow( len, ( gapFactor && gapFactor > 1 ) ? gapFactor : 3 )
+            , mb =  1024 * 1024
+            , size = MBsize || defaultSize
+            , tSize = parseInt( size * mb, 10 )
+            // log bt
+            , logp = Math.log( len )
+            // log a
+            , logt = Math.log( tSize )
+            , logr = logt / logp
+            , maxLenPower = parseInt( logr, 10 )
+            , str = '\r\nContent-Disposition: form-data\r\nLorem\
+                    Ipsum et Dolor sit amet, Quisquisce\r\n\r\n'
+            ;
 
         for ( var i = 0,  c = 1, t = new Buffer( tSize ); i + len < tSize; i += len  ){
             if ( ( i % ( gap ) ) === 0 ) {
@@ -27,7 +31,8 @@ var log = console.log,
             } else {
                 t[ i ] = i % 255;
             } 
-        }
+        };
+
         mtime = Date.now() - s;
         log( '- current pattern:', JSON.stringify( p.toString() ) );
         log( '- pattern copied %d times in test buffer', indexes.length ); 
@@ -37,10 +42,11 @@ var log = console.log,
         // log( ' - plength / pgap:', len / gap );
         log( '- buffer creation time:', mtime / 1000, 'secs' ); 
         return t;
-    },
-    bsize,
-    gapfactor,
-    pattern = '---------------------------2046863043300497616870820724\r\n';
+    }
+    , bsize
+    , gapfactor
+    , pattern = '---------------------------2046863043300497616870820724\r\n'
+    ;
 
 // read custom arguments
 process.argv.forEach( function ( val, index, array ) {
@@ -49,15 +55,16 @@ process.argv.forEach( function ( val, index, array ) {
     ( index === 4 ) ? ( pattern = ( ( val.length > 1 ) && ( val.length < 255 ) ) ? ( '--' + val + '\r\n' ) : pattern ) : null;  
 } );
 
-var p = new Buffer( pattern ),
-    msg = log( '- building test buffer' ),
-    t = buildTestBuffer( p, bsize, gapfactor ),
-    smem = process.memoryUsage(),
-    bop = BoyerParser( p ),
-    emem = process.memoryUsage(),
-    stime = Date.now(),
-    results = bop.parse( t ),
-    elapsed = Date.now() - stime;
+var p = new Buffer( pattern )
+    , msg = log( '- building test buffer' )
+    , t = buildTestBuffer( p, bsize, gapfactor )
+    , smem = process.memoryUsage()
+    , bop = Bop( p )
+    , emem = process.memoryUsage()
+    , stime = Date.now()
+    , results = bop.parse( t )
+    , elapsed = Date.now() - stime
+    ;
 
 log( '- test buffer size is %d MBytes', bsize || defaultSize );
 

@@ -1,15 +1,17 @@
 // ✔
-var log = console.log,
-    assert = require( 'assert' ),
-    Bop = require( '../' ).Bop,
-    bpattern = new Buffer( 255 ),
-    bop = Bop( bpattern ),
-    osize = 257;
+var log = console.log
+    , assert = require( 'assert' )
+    , Bop = require( '../' )
+    , bpattern = new Buffer( 255 )
+    , bop = Bop( bpattern )
+    , osize = 257
+    ;
 
 log( '. create %d pattern long, with all bytes equal to 0xff', bpattern.length );
+
 for ( var i = 0; i < 255; ++i ) {
     bpattern[ i ] = 0xff;
-}
+};
 
 log( '- check if the bad char table is an istance of Buffer.' );
 assert.equal( true, Buffer.isBuffer( bop.bc ), 'bc table should be a Buffer!' );
@@ -23,10 +25,12 @@ assert.notEqual( undefined, bop.bc[ 255 ], 'lookup table for this pattern should
 log( '- test array creation if pattern length is >= 256' );
 bpattern = new Buffer( osize );
 bop = Bop( bpattern );
+
 log( '- create %d pattern long, with all bytes equal to 0xff', bpattern.length );
+
 for ( var i = 0; i < osize; ++i ) {
     bpattern[ i ] = 0xff;
-}
+};
 
 log( '- check if the pattern is an istance of Array.' );
 assert.equal( true, Array.isArray( bop.bc ), 'pattern should be an Array!' );
