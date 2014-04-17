@@ -1,7 +1,7 @@
 ###Bop, a Boyer Moore Parser
 [![build status](https://secure.travis-ci.org/rootslab/bop.png?branch=master)](http://travis-ci.org/rootslab/bop) [![NPM version](https://badge.fury.io/js/bop.png)](http://badge.fury.io/js/bop)
 
-[![NPM](https://nodei.co/npm/qap.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
+[![NPM](https://nodei.co/npm/bop.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
 
 [![NPM](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
 
