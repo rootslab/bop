@@ -1,9 +1,19 @@
 ###Bop, a Boyer Moore Parser
-[![build status](https://secure.travis-ci.org/rootslab/bop.png?branch=master)](http://travis-ci.org/rootslab/bop) [![NPM version](https://badge.fury.io/js/bop.png)](http://badge.fury.io/js/bop)
 
-[![NPM](https://nodei.co/npm/bop.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
+[![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rootslab/bop#mit-license)
 
-[![NPM](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
+[![NPM VERSION](http://img.shields.io/npm/v/bop.svg)](https://www.npmjs.org/package/bop)
+[![TRAVIS CI BUILD](http://img.shields.io/travis/rootslab/bop.svg)](http://travis-ci.org/rootslab/bop)
+[![BUILD STATUS](http://img.shields.io/david/rootslab/bop.svg)](https://david-dm.org/rootslab/bop)
+
+[![NPM GRAPH1](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
+
+[![GITHUB tag](http://img.shields.io/github/tag/rootslab/bop.svg)](https://github.com/rootslab/bop/tags)
+[![ISSUES](http://img.shields.io/github/issues/rootslab/bop.svg)](https://github.com/rootslab/bop/issues)
+[![GITTIP](http://img.shields.io/gittip/rootslab.svg)](https://www.gittip.com/rootslab/)
+[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg)](http://npm-stat.com/charts.html?package=bop)
+
+[![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
 
  * Bop is a __very fast__ Boyer-Moore parser for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
