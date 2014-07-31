@@ -1,17 +1,15 @@
 ###Bop, a Boyer Moore Parser
 
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rootslab/bop#mit-license)
+[![GITTIP](http://img.shields.io/gittip/rootslab.svg)](https://www.gittip.com/rootslab/)
+[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg)](http://npm-stat.com/charts.html?package=bop)
 
 [![NPM VERSION](http://img.shields.io/npm/v/bop.svg)](https://www.npmjs.org/package/bop)
 [![TRAVIS CI BUILD](http://img.shields.io/travis/rootslab/bop.svg)](http://travis-ci.org/rootslab/bop)
 [![BUILD STATUS](http://img.shields.io/david/rootslab/bop.svg)](https://david-dm.org/rootslab/bop)
+[![DEVDEPENDENCY STATUS](http://img.shields.io/david/dev/rootslab/bop.svg)](https://david-dm.org/rootslab/bop#info=devDependencies)
 
 [![NPM GRAPH1](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
-
-[![GITHUB tag](http://img.shields.io/github/tag/rootslab/bop.svg)](https://github.com/rootslab/bop/tags)
-[![ISSUES](http://img.shields.io/github/issues/rootslab/bop.svg)](https://github.com/rootslab/bop/issues)
-[![GITTIP](http://img.shields.io/gittip/rootslab.svg)](https://www.gittip.com/rootslab/)
-[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg)](http://npm-stat.com/charts.html?package=bop)
 
 [![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
 
