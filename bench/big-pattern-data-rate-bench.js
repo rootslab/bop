@@ -30,7 +30,7 @@ stime = Date.now();
 for ( ; i < plen; ++i ) {
     rand = Math.floor( Math.random() * 255 * plen ) % 255;
     pattern[ i ] = rand; 
-};
+}
 
 log( '- created %d MB big pattern in %d secs', pmb, ( ( Date.now()- stime ) / 1000 ).toFixed( 1 ) );
 
@@ -49,7 +49,7 @@ stime = Date.now();
 for ( i = 0; i <= dlen - plen; i += 1.2 * plen ) {
     pattern.copy( data, i );
     indexes.push( i );
-};
+}
 
 log( '- test data buffer (' + mb + 'MB) created in', ( Date.now() - stime ) / 1000, 'secs' );
 log( '- copied', ( indexes.length ) , 'big patterns (' + pmb + 'MB) in test data' );

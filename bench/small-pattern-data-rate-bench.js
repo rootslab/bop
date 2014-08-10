@@ -31,7 +31,7 @@ var log = console.log
             } else {
                 t[ i ] = i % 255;
             } 
-        };
+        }
 
         mtime = Date.now() - s;
         log( '- current pattern:', JSON.stringify( p.toString() ) );
