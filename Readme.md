@@ -1,22 +1,25 @@
-###Bop, a Boyer Moore Parser
-
-[![CODECLIMATE](http://img.shields.io/codeclimate/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
-[![CODECLIMATE-TEST-COVERAGE](http://img.shields.io/codeclimate/coverage/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
-
-[![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/rootslab/bop#mit-license)
-[![GITTIP](http://img.shields.io/gittip/rootslab.svg?style=flat)](https://www.gittip.com/rootslab/)
-[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg?style=flat)](http://npm-stat.com/charts.html?package=bop)
+###Bop
 
 [![NPM VERSION](http://img.shields.io/npm/v/bop.svg?style=flat)](https://www.npmjs.org/package/bop)
+[![CODACY BADGE](https://img.shields.io/codacy/b18ed7d95b0a4707a0ff7b88b30d3def.svg?style=flat)](https://www.codacy.com/public/44gatti/bop)
+[![CODECLIMATE](http://img.shields.io/codeclimate/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
+[![CODECLIMATE-TEST-COVERAGE](https://img.shields.io/codeclimate/coverage/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
+[![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/rootslab/bop#mit-license)
+
 [![TRAVIS CI BUILD](http://img.shields.io/travis/rootslab/bop.svg?style=flat)](http://travis-ci.org/rootslab/bop)
 [![BUILD STATUS](http://img.shields.io/david/rootslab/bop.svg?style=flat)](https://david-dm.org/rootslab/bop)
 [![DEVDEPENDENCY STATUS](http://img.shields.io/david/dev/rootslab/bop.svg?style=flat)](https://david-dm.org/rootslab/bop#info=devDependencies)
+[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg?style=flat)](http://npm-stat.com/charts.html?package=bop)
 
 [![NPM GRAPH1](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
 
-[![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&stars=true)](https://nodei.co/npm/bop/)
+[![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/bop/)
 
- * Bop is a __very fast__ Boyer-Moore parser for string or buffer patterns.
+[![status](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.badges/status.png)](https://sourcegraph.com/github.com/rootslab/bop)
+[![views](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views.png)](https://sourcegraph.com/github.com/rootslab/bop)
+[![views 24h](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views-24h.png)](https://sourcegraph.com/github.com/rootslab/bop)
+
+ * __Bop__ is a __very fast Boyer-Moore parser__ for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
  * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
 
@@ -54,35 +57,36 @@ $npm test
 
 ```bash
 $ cd bop/
-$ npm run-script bench
+$ npm run bench
 ```
 
 ###Constructor
 
-> Create an instance with a Buffer or String pattern. 
+> Create an instance with a Buffer or String pattern.
 
 ```javascript
-Bop( Buffer || String pattern )
+Bop( Buffer | String pattern )
 // or
 new Bop( Buffer | String pattern )
 ```
 
 ### Methods
 
-> List all pattern occurrences into a String or Buffer data.
-> It returns a new array of indexes, or populates an array passed as the last argument to parse method.
+> Arguments within [ ] are optional.
 
 ```javascript
-// slower with String
-Bop#parse( String data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
+/*
+ * List all pattern occurrences into a String or Buffer data.
+ * It returns a new array of indexes, or populates an array
+ * passed as the last argument.
+ *
+ * NOTE: it is faster using Buffers.
+ */
+Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 
-// faster with Buffer
-Bop#parse( Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
-```
-
-> Change the pattern :
-
-```javascript
+/*
+ * Change the pattern to search.
+ */
 Bop#set( Buffer || String pattern ) : Buffer
 ```
 
@@ -90,20 +94,21 @@ Bop#set( Buffer || String pattern ) : Buffer
 
 ```javascript
 var assert = require( 'assert' )
-    , Bop = require( './bop' )
+    , Bop = require( 'bop' )
     , pattern = 'hellofolks\r\n\r\n'
     , text = 'hehe' + pattern +'loremipsumhellofolks\r\n' + pattern
-	// create a Bop instance that parses the pattern
-	, bop = Bop( pattern )
-	// parse data from beginning
-	, results = bop.parse( text )
-	;
+    // create a Bop instance that parses the pattern
+    , bop = Bop( pattern )
+    // parse data from beginning
+    , results = bop.parse( text )
+    , bresults = null
+    ;
 
 // change pattern
 bop.set( new Buffer( pattern ) );
 
 // re-parse data passing a Buffer instead of a String
-var bresults = bop.parse( new Buffer( text ) );
+bresults = bop.parse( new Buffer( text ) );
 
 // results are the same
 assert.deepEqual( results, bresults );
@@ -157,7 +162,7 @@ See __[bench](./bench)__ dir.
 
 ### MIT License
 
-> Copyright (c) 2012 &lt; Guglielmo Ferri : 44gatti@gmail.com &gt;
+> Copyright (c) 2015 &lt; Guglielmo Ferri : 44gatti@gmail.com &gt;
 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the

@@ -28,7 +28,7 @@ bop = Bop( bpattern );
 
 log( '- create %d pattern long, with all bytes equal to 0xff', bpattern.length );
 
-for ( var i = 0; i < osize; ++i ) {
+for ( i = 0; i < osize; ++i ) {
     bpattern[ i ] = 0xff;
 };
 
