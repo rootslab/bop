@@ -15,10 +15,6 @@
 
 [![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/bop/)
 
-[![status](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.badges/status.png)](https://sourcegraph.com/github.com/rootslab/bop)
-[![views](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views.png)](https://sourcegraph.com/github.com/rootslab/bop)
-[![views 24h](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views-24h.png)](https://sourcegraph.com/github.com/rootslab/bop)
-
  * __Bop__ is a __very fast Boyer-Moore parser__ for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
  * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
