@@ -1,4 +1,4 @@
-###Bop
+### Bop
 
 [![NPM VERSION](http://img.shields.io/npm/v/bop.svg?style=flat)](https://www.npmjs.org/package/bop)
 [![CODACY BADGE](https://img.shields.io/codacy/b18ed7d95b0a4707a0ff7b88b30d3def.svg?style=flat)](https://www.codacy.com/public/44gatti/bop)
@@ -6,24 +6,21 @@
 [![CODECLIMATE-TEST-COVERAGE](https://img.shields.io/codeclimate/coverage/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
 [![LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/rootslab/bop#mit-license)
 
+![NODE VERSION](https://img.shields.io/node/v/bop.svg)
 [![TRAVIS CI BUILD](http://img.shields.io/travis/rootslab/bop.svg?style=flat)](http://travis-ci.org/rootslab/bop)
 [![BUILD STATUS](http://img.shields.io/david/rootslab/bop.svg?style=flat)](https://david-dm.org/rootslab/bop)
 [![DEVDEPENDENCY STATUS](http://img.shields.io/david/dev/rootslab/bop.svg?style=flat)](https://david-dm.org/rootslab/bop#info=devDependencies)
-[![NPM DOWNLOADS](http://img.shields.io/npm/dm/bop.svg?style=flat)](http://npm-stat.com/charts.html?package=bop)
 
-[![NPM GRAPH1](https://nodei.co/npm-dl/bop.png)](https://nodei.co/npm/bop/)
+[![NPM MONTHLY](http://img.shields.io/npm/dm/bop.svg?style=flat)](http://npm-stat.com/charts.html?package=bop)
+![NPM YEARLY](https://img.shields.io/npm/dy/bop.svg)
 
-[![NPM GRAPH2](https://nodei.co/npm/bop.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/bop/)
-
-[![status](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.badges/status.png)](https://sourcegraph.com/github.com/rootslab/bop)
-[![views](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views.png)](https://sourcegraph.com/github.com/rootslab/bop)
-[![views 24h](https://sourcegraph.com/api/repos/github.com/rootslab/bop/.counters/views-24h.png)](https://sourcegraph.com/github.com/rootslab/bop)
+[![NPM GRAPH](https://nodei.co/npm/bop.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/bop/)
 
  * __Bop__ is a __very fast Boyer-Moore parser__ for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
  * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
 
-###Main features
+### Main features
 
 > Given a m-length pattern and n-length data, and σ-length alphabet ( σ = 256 ):
 
@@ -35,7 +32,7 @@
 
 > See __[Lecroq](http://www-igm.univ-mlv.fr/~lecroq/string/node14.html)__ for reference and also __[Qap](https://github.com/rootslab/qap)__, a QuickSearch parser.
 
-###Install
+### Install
 ```bash
 $ npm install bop [-g]
 ```
@@ -46,21 +43,21 @@ $ npm install bop [-g]
 var Bop = require( 'bop' );
 ```
 
-###Run Tests
+### Run Tests
 
 ```javascript
 $cd bop/
 $npm test
 ```
 
-###Run Benchmarks
+### Run Benchmarks
 
 ```bash
 $ cd bop/
 $ npm run bench
 ```
 
-###Constructor
+### Constructor
 
 > Create an instance with a Buffer or String pattern.
 
@@ -90,7 +87,7 @@ Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitRes
 Bop#set( Buffer || String pattern ) : Buffer
 ```
 
-###Usage Example
+### Usage Example
 
 ```javascript
 var assert = require( 'assert' )
@@ -117,7 +114,7 @@ assert.deepEqual( results, bresults );
 console.log( results, bresults );
 ```
 
-####Benchmark for a short pattern ( length <= 255 bytes )
+#### Benchmark for a short pattern ( length <= 255 bytes )
 
 > Parser uses 3 Buffers 256-bytes long to build shifting tables, then:
 
@@ -143,7 +140,7 @@ the lesser are occurrences of pattern string into the text buffer.
   $ node bench/small-pattern-data-rate.js 700 4 "that'sallfolks"
 ```
 
-####Benchmark for a big pattern ( length > 255 bytes )
+#### Benchmark for a big pattern ( length > 255 bytes )
 
 > Parser uses 3 arrays to build shifting tables for big patterns, then:
 
@@ -162,7 +159,7 @@ See __[bench](./bench)__ dir.
 
 ### MIT License
 
-> Copyright (c) 2015 &lt; Guglielmo Ferri : 44gatti@gmail.com &gt;
+> Copyright (c) 2015-present &lt; Guglielmo Ferri : 44gatti@gmail.com &gt;
 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
