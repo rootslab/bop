@@ -1,5 +1,6 @@
 ### Bop
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea2e0ee5b9ab44d5929ad263359587a6)](https://www.codacy.com/app/44gatti/bop?utm_source=github.com&utm_medium=referral&utm_content=rootslab/bop&utm_campaign=badger)
 [![NPM VERSION](http://img.shields.io/npm/v/bop.svg?style=flat)](https://www.npmjs.org/package/bop)
 [![CODACY BADGE](https://img.shields.io/codacy/b18ed7d95b0a4707a0ff7b88b30d3def.svg?style=flat)](https://www.codacy.com/public/44gatti/bop)
 [![CODECLIMATE](http://img.shields.io/codeclimate/github/rootslab/bop.svg?style=flat)](https://codeclimate.com/github/rootslab/bop)
