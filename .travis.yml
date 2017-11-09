@@ -18,6 +18,6 @@ before_script:
  - npm install -g codeclimate-test-reporter
 script: istanbul cover -v test/run.js 
 after_script:
- - codeclimate < coverage/lcov.info
+ - codeclimate-test-reporter < coverage/lcov.info
 env: 
  - CODECLIMATE_REPO_TOKEN=2ec835187f41b7f818cfa674baaf0048908beabca4d576692844b1d6739e3258  
