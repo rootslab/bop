@@ -1,6 +1,6 @@
 {
     "name" : "bop"
-  , "version" : "2.1.4"
+  , "version" : "2.3.0"
   , "description" : "Bop, an ultra fast Boyer-Moore parser/matcher optimized for string and buffer patterns (<= 255 bytes), then it is ideal for parsing multipart/form-data streams, that have a pattern / boundary length < ~70 bytes."
   , "homepage" : "https://github.com/rootslab/bop"
   , "private": false

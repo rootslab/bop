@@ -17,7 +17,7 @@
 
  * __Bop__ is a __very fast Boyer-Moore parser__ for string or buffer patterns.
  * It is optimized for using with pattern strings/buffers <= 255 bytes.
- * It is __ideal__ for parsing __multipart/form-data__ streams, that have a pattern / boundary length < ~70 bytes.
+ * It is __ideal__, for example, to parse streams like __multipart/form-data__ ones, in which pattern/boundary length < ~70 bytes).
 
 ### Main features
 
@@ -49,6 +49,12 @@ $cd bop/
 $npm test
 ```
 
+> __to execute a single test file simply do__:
+
+```bash
+ $ node test/file-name.js
+```
+
 ### Run Benchmarks
 
 ```bash
@@ -78,12 +84,45 @@ new Bop( Buffer | String pattern )
  *
  * NOTE: it is faster using Buffers.
  */
+
 Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 
 /*
  * Change the pattern to search.
  */
+
 Bop#set( Buffer || String pattern ) : Buffer
+
+/*
+ * Same as parse, it strictly parses data without collecting overlapping sequences.
+ *
+ * Example with CRLF sequence:
+ *
+ * - bop pattern is set to: "\r\n\r\n"                 (CR LF CR LF)
+ * - data to parse is:      "\r\n\r\n\r\n\r\n\r\n\r\n" (CR LF CR LF CR LF CR LF )
+ * 
+ * - with Bop.parse( data ) we get 3 indexes as results: [0, 2, 4]
+ *
+ *   CR LF CR LF
+ *   CR LF CR LF CR LF CR LF
+ *
+ *         CR LF CR LF
+ *   CR LF CR LF CR LF CR LF
+ *
+ *               CR LF CR LF
+ *   CR LF CR LF CR LF CR LF
+ *
+ * - with Bop.sparse( data ) we get only 2 results: [0, 4]
+ *
+ *   CR LF CR LF
+ *   CR LF CR LF CR LF CR LF
+ *
+ *               CR LF CR LF
+ *   CR LF CR LF CR LF CR LF
+ *
+ */
+
+Bop#sparse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 ```
 
 ### Usage Example
