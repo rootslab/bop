@@ -64,37 +64,35 @@ $ npm run bench
 
 ### Constructor
 
-> Create an instance with a Buffer or String pattern.
+> Create an instance, using a pattern.
 
 ```javascript
-Bop( Buffer | String pattern )
+Bop( Buffer pattern | String pattern )
 // or
-new Bop( Buffer | String pattern )
+new Bop( Buffer pattern | String pattern )
 ```
 
 ### Methods
 
-> Arguments within [ ] are optional.
+> Arguments within [] are optional.
 
 ```javascript
+// Change the current pattern to search.
+Bop#set( Buffer pattern | String pattern ) : Buffer
+
 /*
  * List all pattern occurrences into a String or Buffer data.
  * It returns a new array of indexes, or populates an array
  * passed as the last argument.
  *
  * NOTE: it is faster using Buffers.
+ *
  */
-
 Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 
 /*
- * Change the pattern to search.
- */
-
-Bop#set( Buffer || String pattern ) : Buffer
-
-/*
- * Same as parse, it strictly parses data without collecting overlapping sequences.
+ * Strict parse, it's the same as parse, but it parses data
+ * without collecting overlapping sequences.
  *
  * Example with CRLF sequence:
  *
@@ -103,53 +101,42 @@ Bop#set( Buffer || String pattern ) : Buffer
  * 
  * - with Bop.parse( data ) we get 3 indexes as results: [0, 2, 4]
  *
- *   CR LF CR LF
- *   CR LF CR LF CR LF CR LF
+ *       0  1  2  3  4  5  6  7
+ *      -----------------------
+ *   p: CR LF CR LF
+ *   d: CR LF CR LF CR LF CR LF
  *
- *         CR LF CR LF
- *   CR LF CR LF CR LF CR LF
+ *   p: ----> CR LF CR LF
+ *   d: CR LF CR LF CR LF CR LF
  *
- *               CR LF CR LF
- *   CR LF CR LF CR LF CR LF
+ *   p: ----------> CR LF CR LF
+ *   d: CR LF CR LF CR LF CR LF
  *
  * - with Bop.sparse( data ) we get only 2 results: [0, 4]
  *
- *   CR LF CR LF
- *   CR LF CR LF CR LF CR LF
+ *       0  1  2  3  4  5  6  7
+ *      -----------------------
+ *   p: CR LF CR LF
+ *   d: CR LF CR LF CR LF CR LF
  *
- *               CR LF CR LF
- *   CR LF CR LF CR LF CR LF
+ *   p: ----------> CR LF CR LF
+ *   d: CR LF CR LF CR LF CR LF
  *
  */
-
 Bop#sparse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
 ```
 
 ### Usage Example
 
 ```javascript
-var assert = require( 'assert' )
-    , Bop = require( 'bop' )
-    , pattern = 'hellofolks\r\n\r\n'
-    , text = 'hehe' + pattern +'loremipsumhellofolks\r\n' + pattern
-    // create a Bop instance that parses the pattern
+var Bop = require( 'bop' )
+    , pattern = 'hellofolks\r\n'
+    , somedata = 'hehehe' + pattern +'eheheh' + pattern
     , bop = Bop( pattern )
     // parse data from beginning
-    , results = bop.parse( text )
-    , bresults = null
+    , results = bop.parse( somedata )
     ;
 
-// change pattern
-bop.set( new Buffer( pattern ) );
-
-// re-parse data passing a Buffer instead of a String
-bresults = bop.parse( new Buffer( text ) );
-
-// results are the same
-assert.deepEqual( results, bresults );
-
-// parser results ( starting indexes ) [ 4, 40 ]
-console.log( results, bresults );
 ```
 
 #### Benchmark for a short pattern ( length <= 255 bytes )
