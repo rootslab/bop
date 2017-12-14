@@ -77,22 +77,35 @@ new Bop( Buffer pattern | String pattern )
 > Arguments within [] are optional.
 
 ```javascript
-// Change the current pattern to search.
+// Change the pattern to search.
 Bop#set( Buffer pattern | String pattern ) : Buffer
 
 /*
- * List all pattern occurrences into a String or Buffer data.
- * It returns a new array of indexes, or populates an array
- * passed as the last argument.
- *
- * NOTE: it is faster using Buffers.
- *
+ * Count matches, optionally without overlapping sequences,
+ * starting from a particular index (default is 0).
+ * It returns an Array containing the number of matches,
+ * then, if distance switch is on, it returns also the maximum
+ * distance found between patterns.
  */
-Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
+Bop#count( Buffer data [, Number start_from [, Boolean sparse [, Boolean distance ] ] ] ) : Array
 
 /*
- * Strict parse, it's the same as parse, but it parses data
- * without collecting overlapping sequences.
+ * Collect all indexes of pattern occurrences.
+ *
+ * As options you can:
+ *
+ * - start parsing from a particular index,
+ * - limit the number of results to parse
+ * - fill your array with resulting indexes.
+ *
+ * NOTE: use Buffers when possible (faster).
+ *
+ */
+Bop#parse( Buffer data | String data [, Number start_from [, Number limit_results [, Array my_array ] ] ] ) : Array
+
+/*
+ * Strict parse, it's the same as parse, without collecting
+ * any overlapping sequences.
  *
  * Example with CRLF sequence:
  *
@@ -123,7 +136,7 @@ Bop#parse( String data | Buffer data [, Number startFromIndex [, Number limitRes
  *   d: CR LF CR LF CR LF CR LF
  *
  */
-Bop#sparse( String data | Buffer data [, Number startFromIndex [, Number limitResultsTo [, Array array ] ] ] ) : Array
+Bop#sparse( Buffer data | String data [, Number start_from [, Number limit_results [, Array my_array ] ] ] ) : Array
 ```
 
 ### Usage Example
@@ -138,6 +151,8 @@ var Bop = require( 'bop' )
     ;
 
 ```
+> See __[examples](example/)__.
+
 
 #### Benchmark for a short pattern ( length <= 255 bytes )
 
@@ -164,6 +179,7 @@ the lesser are occurrences of pattern string into the text buffer.
   # with [testBufferSizeInMB] [distanceFactor] [aStringPattern]
   $ node bench/small-pattern-data-rate.js 700 4 "that'sallfolks"
 ```
+
 
 #### Benchmark for a big pattern ( length > 255 bytes )
 

@@ -7,7 +7,8 @@ var log = console.log
     , n = 1
     , tlen = splen * n
     , indexes = []
-    , data = new Buffer( 256 )
+    , offset = 27
+    , data = new Buffer( offset + 256 )
     , dlen = data.length
     , bpattern = null
     , i = 0
@@ -19,22 +20,32 @@ for ( ; i < n; ++i ) spattern += spattern;
 
 log( '- create a Buffer copying 2 patterns side by side' );
 bpattern = new Buffer( spattern );
-bpattern.copy( data, bpattern.length );
-bpattern.copy( data, ( bpattern.length * 2 ) );
+bpattern.copy( data, offset + bpattern.length );
+bpattern.copy( data, offset + ( bpattern.length * 2 ) );
 
-log( '- parse data for patterns and get results' );
+log( '- parse data (with overlapping sequences)' );
 var bop = Bop( bpattern )
     , results = bop.parse( data )
+    // count with overlapping sequences
+    , cnt = bop.count( data )
     ;
+
+log( '- counting matches (with overlapping sequences), they should be: %d', results.length );
+assert.ok( cnt[ 0 ] === results.length, 'erroneous #count result!' );
 
 log( '- check if the parse method returns exactly 3 results' );
 assert.equal( results.length, 3, 'results length is wrong, must be 3, now it\'s ' + results.length );
-assert.deepEqual( results, [ 20, 30, 40 ], 'results don\'t match' );
+assert.deepEqual( results, [ offset + 20, offset + 30, offset + 40 ], 'results don\'t match' );
 
-log( '- now parse data with Bop#sparse, it doesn\'t collect overlapping patterns' );
-var bop = Bop( bpattern )
-    , results = bop.sparse( data )
-    ;
-log( '- check if the parse method returns exactly 2 results this time' );
+log( '- now parse data with Bop#sparse (it doesn\'t collect overlapping sequences)' );
+results = bop.sparse( data )
+
+log( '- results should be: %d', 2 );
 assert.equal( results.length, 2, 'results length is wrong, must be 2, now it\'s ' + results.length );
-assert.deepEqual( results, [ 20, 40 ], 'results don\'t match' );
+
+log( '- check resulting indexes' );
+assert.deepEqual( results, [ offset + 20, offset + 40 ], 'results don\'t match' );
+
+log( '- counting matches (with overlapping sequences), they should be: %d', results.length );
+cnt = bop.count( data, 0, true );
+assert.ok( cnt[ 0 ] === results.length, 'erroneous #count result!' );
