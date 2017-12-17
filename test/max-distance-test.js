@@ -44,11 +44,11 @@ do {
     assert.ok( cnt[ 0 ] === i );
     if ( i ) {
         if ( i > 1 ) assert.ok( cnt[ 1 ] === ( indexes[ i - 2 ] - bpattern.length ) );
-        else assert.ok( cnt[ 1 ] === 0 );
+        else assert.ok( cnt[ 1 ] === -1 );
     } else
         // i = 0, should return -1
         assert.ok( cnt[ 1 ] === -1 );
-    log( ' -> !OK (%d) slice(%d,%d) ->', i , 0, indexes[ i ], cnt );
+    log( ' -> !OK (%d) slice(%d,%d) ->', i , 0, indexes[ i ] || data.length , cnt );
 
 } while ( i++ < indexes.length );
 

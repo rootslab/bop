@@ -85,9 +85,10 @@ Bop#set( Buffer pattern | String pattern ) : Buffer
  * starting from a particular index (default is 0).
  * It returns an Array containing the number of matches,
  * then, if distance switch is on, it returns also the maximum
- * distance found between patterns.
- * NOTE: if no occurrence was found, max distance will be -1 and
- * then the resulting array will be [0, -1].
+ * distance found between 2 patterns.
+ * NOTE: if 0 or only 1 occurrence was found, the max distance will
+ * be -1 and then the resulting array will be respectvely [0, -1]
+ * and [1, -1]. 
  */
 Bop#count( Buffer data [, Number start_from [, Boolean sparse [, Boolean distance ] ] ] ) : Array
 
