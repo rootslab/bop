@@ -1,4 +1,5 @@
 var log = console.log
+    , floor = Math.floor
     , assert = require( 'assert' )
     , Bop = require( '../' )
     , pattern = '-----hellofolks!\r\n\r\n'
@@ -8,13 +9,13 @@ var log = console.log
     , dlen = mb * 1024 * 1024
     , data = new Buffer( dlen )
     , bop = Bop( bpattern )
-    , occ = Math.floor( dlen / plen / plen / plen / plen )
+    , occ = floor( dlen / plen / plen / plen / plen )
     , i = occ
     , indexes = []
     , stime = Date.now()
     ;
 
-log( '- creating test buffer..(' + mb +' MB)' );
+log( '- creating test buffer (' + mb +' MB), push (%d bytes) pattern %d times', plen, floor( dlen / occ ) );
 
 // occ should be >> pattern.length
 for ( ; i < dlen - 1; i += occ ) {
@@ -30,7 +31,7 @@ log( '- parse data from beginning..' );
 var sptime = Date.now(),
     results = bop.parse( data ),
     presults = null,
-    offset = Math.floor( results.length * Math.random() );
+    offset = floor( results.length * Math.random() );
 
 log( '- input data was parsed in', ( ( Date.now() - sptime ) / 1000 ).toFixed( 2 ), 'secs' );
 log( '- total results:', results.length );
