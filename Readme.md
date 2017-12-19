@@ -81,27 +81,40 @@ new Bop( Buffer pattern | String pattern )
 Bop#set( Buffer pattern | String pattern ) : Buffer
 
 /*
- * Count matches, optionally without overlapping sequences,
- * starting from a particular index (default is 0).
- * It returns an Array containing the number of matches,
- * then, if distance switch is on, it returns also the maximum
- * distance found between 2 patterns, then, the distance of the pattern
- * from the starting index (to the left) and the distance from the end of pattern, 
- * to the end of data (to the right).
+ * Count matches, optionally starting from a particular index (default
+ * is 0). It returns an Array containing the number of matches.
+ */
+Bop#count( Buffer data [, Number start_from ] ) : Array
+
+// Same as #count, but without counting overlapping sequences
+Bop#scount( Buffer data [, Number start_from ] ) : Array
+
+/*
+ * Count matches, and the max distance found between 2 matches,
+ * optionally starting from a particular index (default is 0).
+ * It returns an Array containing:
+ * - the number of matches
+ * - the max distance found between 2 matches, -1 otherwise
+ * - the distance from data index 0 to the first match, -1 otherwise
+ * - the distance from the end of the last match to the end of data,
+ *   -1 otherwise
  * 
  * NOTE: if 0 or only 1 occurrence was found, the max distance will
  * be -1 and then the resulting array will be respectvely:
- * - [0, -1, data.length, data.length ]
+ * - [0, -1, -1, -1 ]
  * - [1, -1, .., .. ]
  */
-Bop#count( Buffer data [, Number start_from [, Boolean sparse [, Boolean distance ] ] ] ) : Array
+Bop#dist( Buffer data [, Number start_from ] ) : Array
+
+// same as #dist, but without counting overlapping sequences
+Bop#sdist( Buffer data [, Number start_from ] ) : Array
 
 /*
  * Collect all indexes of pattern occurrences.
  *
  * As options you can:
  *
- * - start parsing from a particular index,
+ * - start parsing from a particular index
  * - limit the number of results to parse
  * - fill your array with resulting indexes.
  *

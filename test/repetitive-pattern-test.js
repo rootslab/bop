@@ -46,6 +46,6 @@ assert.equal( results.length, 2, 'results length is wrong, must be 2, now it\'s 
 log( '- check resulting indexes' );
 assert.deepEqual( results, [ offset + 20, offset + 40 ], 'results don\'t match' );
 
-log( '- counting matches (with overlapping sequences), they should be: %d', results.length );
-cnt = bop.count( data, 0, true );
-assert.ok( cnt[ 0 ] === results.length, 'erroneous #count result!' );
+log( '- counting matches (without overlapping sequences), they should be: %d', results.length );
+cnt = bop.scount( data, 0 );
+assert.ok( cnt[ 0 ] === results.length, 'erroneous #scount result!' );

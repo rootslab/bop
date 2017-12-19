@@ -27,8 +27,8 @@ for ( i = 1; i < indexes.length; ++i ) distances.push( indexes[ i ] - indexes[ i
 
 log( '- parse for pattern (%d bytes )', plen );
 
-var results = bop.parse( data, 0, false )
-    // count with overlapping sequences
+// count with overlapping sequences
+var results = bop.parse( data, 0 )
     , cnt = null
     , i = 0
     , snip = null
@@ -40,7 +40,7 @@ log( '- check distance results.. ' );
 
 do {
     snip = data.slice( 0, indexes[ i ] );
-    cnt = bop.count( snip, 0, false, true );
+    cnt = bop.dist( snip, 0 );
     assert.ok( cnt[ 0 ] === i );
     if ( i ) {
         if ( i > 1 ) {
@@ -58,8 +58,8 @@ do {
         // i = 0, should return -1
         assert.ok( cnt[ 1 ] === -1 );
         // check 0 length reesults
-        assert.ok( cnt[ 2 ] === snip.length, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
-        assert.ok( cnt[ 3 ] === snip.length, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+        assert.ok( cnt[ 2 ] === -1, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+        assert.ok( cnt[ 3 ] === -1, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
     }
     log( ' -> !OK (%d) slice(%d,%d) ->', i , 0, indexes[ i ] || data.length , cnt );
 
