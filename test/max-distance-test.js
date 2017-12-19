@@ -20,34 +20,47 @@ log( '- copying (%d bytes) pattern to data, varying distances between every occu
 for ( ; i < dlen; i *= 2 ) {
     indexes.push( i );
     bpattern.copy( data, i );
+    log( ' -> !copy (%d) pattern to (%d,%d) slice', ++occ, i , i + bpattern.length );
 };
 
-for ( i = 1; i < indexes.length; ++i ) {
-   distances.push( indexes[ i ] - indexes[ i - 1 ] - plen );
-}
+for ( i = 1; i < indexes.length; ++i ) distances.push( indexes[ i ] - indexes[ i - 1 ] - plen );
 
 log( '- parse for pattern (%d bytes )', plen );
 
-var bop = Bop( bpattern )
-    , results = bop.parse( data, 0, false )
+var results = bop.parse( data, 0, false )
     // count with overlapping sequences
     , cnt = null
     , i = 0
     , snip = null
     ;
 
+log( '- parsed results: %d\n -> [%s]', results.length, results );
 log( '- run #count on %d slices of data ', indexes.length );
 log( '- check distance results.. ' ); 
+
 do {
     snip = data.slice( 0, indexes[ i ] );
     cnt = bop.count( snip, 0, false, true );
     assert.ok( cnt[ 0 ] === i );
     if ( i ) {
-        if ( i > 1 ) assert.ok( cnt[ 1 ] === ( indexes[ i - 2 ] - bpattern.length ) );
-        else assert.ok( cnt[ 1 ] === -1 );
-    } else
+        if ( i > 1 ) {
+            assert.ok( cnt[ 1 ] === ( indexes[ i - 2 ] - bpattern.length ), 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+            assert.ok( cnt[ 2 ] === results[ 0 ], 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+            assert.ok( cnt[ 3 ] === snip.length - indexes[ i - 1 ] - bpattern.length,  'wrong value: ' + cnt[ 3 ] + ' for slice(0,' + indexes[ i ] + ')' );
+        }
+        else {
+            // i === 1
+            assert.ok( cnt[ 1 ] === -1, 'wrong value: ' + cnt[ 1 ] + ' for slice(0,' + indexes[ i ] + ')' );
+            assert.ok( cnt[ 2 ] === results[ 0 ], 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+            assert.ok( cnt[ 3 ] === snip.length - results[ 0 ] - bpattern.length, 'wrong value: ' + cnt[ 3 ] + ' for slice(0,' + indexes[ i ] + ')' );
+        }
+    } else {
         // i = 0, should return -1
         assert.ok( cnt[ 1 ] === -1 );
+        // check 0 length reesults
+        assert.ok( cnt[ 2 ] === snip.length, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+        assert.ok( cnt[ 3 ] === snip.length, 'wrong value: ' + cnt[ 2 ] + ' for slice(0,' + indexes[ i ] + ')' );
+    }
     log( ' -> !OK (%d) slice(%d,%d) ->', i , 0, indexes[ i ] || data.length , cnt );
 
 } while ( i++ < indexes.length );

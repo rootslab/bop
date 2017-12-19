@@ -1,6 +1,6 @@
 {
     "name" : "bop"
-  , "version" : "3.2.0"
+  , "version" : "3.3.0"
   , "description" : "Bop, an ultra fast Boyer-Moore parser/matcher, optimized for string and buffer patterns (<= 255 bytes)."
   , "homepage" : "https://github.com/rootslab/bop"
   , "private": false
