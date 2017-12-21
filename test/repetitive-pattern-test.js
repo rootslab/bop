@@ -28,6 +28,7 @@ var bop = Bop( bpattern )
     , results = bop.parse( data )
     // count with overlapping sequences
     , cnt = bop.count( data )
+    , sresults = null
     ;
 
 log( '- counting matches (with overlapping sequences), they should be: %d', results.length );
@@ -38,14 +39,14 @@ assert.equal( results.length, 3, 'results length is wrong, must be 3, now it\'s 
 assert.deepEqual( results, [ offset + 20, offset + 30, offset + 40 ], 'results don\'t match' );
 
 log( '- now parse data with Bop#sparse (it doesn\'t collect overlapping sequences)' );
-results = bop.sparse( data )
+sresults = bop.sparse( data );
 
 log( '- results should be: %d', 2 );
-assert.equal( results.length, 2, 'results length is wrong, must be 2, now it\'s ' + results.length );
+assert.equal( sresults.length, 2, 'results length is wrong, must be 2, now it\'s ' + sresults.length );
 
 log( '- check resulting indexes' );
-assert.deepEqual( results, [ offset + 20, offset + 40 ], 'results don\'t match' );
+assert.deepEqual( sresults, [ offset + 20, offset + 40 ], 'results don\'t match' );
 
-log( '- counting matches (without overlapping sequences), they should be: %d', results.length );
+log( '- counting matches (without overlapping sequences), they should be: %d', sresults.length );
 cnt = bop.scount( data, 0 );
-assert.ok( cnt[ 0 ] === results.length, 'erroneous #scount result!' );
+assert.ok( cnt[ 0 ] === sresults.length, 'erroneous #scount result!' );
