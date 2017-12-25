@@ -82,7 +82,8 @@ Bop#set( Buffer pattern | String pattern ) : Buffer
 
 /*
  * Count matches, optionally starting from a particular index (default
- * is 0). It returns an Array containing the number of matches.
+ * is 0). It returns an Array containing the number of matches, and the
+ * remaining bytes
  */
 Bop#count( Buffer data [, Number start_from ] ) : Array
 

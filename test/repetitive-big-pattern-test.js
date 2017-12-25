@@ -30,8 +30,8 @@ for ( i = 0; i < n; ++i ) {
 
 log( '- parse data for patterns and get results' );
 var bop = Bop( bpattern )
-    , results = bop.parse( data )
-    , cnt = bop.count( data )
+    , results = bop.sparse( data )
+    , cnt = bop.scount( data )
     ;
 
 
@@ -43,3 +43,6 @@ assert.deepEqual( results, indexes, 'results don\'t match : ' + indexes + ' !== 
 
 log( '- check #count results, it should be: %d', results.length );
 assert.ok( cnt[ 0 ] === results.length, 'erroneous #count result!' );
+
+log( '- check remaining bytes, they should be: %d', data.length - results[ results.length - 1 ] - bpattern.length );
+assert.ok( cnt[ 1 ] === data.length - results[ results.length - 1 ] - bpattern.length, 'erroneous #scount result! is: ' + cnt[ 1 ] );

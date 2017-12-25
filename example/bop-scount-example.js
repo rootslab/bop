@@ -1,5 +1,5 @@
 /*
- * Bop#sparse Bop#parse and Bop#sparse example
+ * Bop#sparse Bop#scount and Bop#count example
  */
 
 var log = console.log
@@ -9,7 +9,7 @@ var log = console.log
     , bop = Bop( line )
     , llen = line.length
     , l = 8
-    , data = new Buffer( 23 + llen * l )
+    , data = new Buffer( 230 + llen * l )
     , i = 0
     , matches = null
     , cnt = -1
@@ -26,15 +26,6 @@ log( '- fill data with %d patterns', l );
  */
 for ( ; i < l; ++i ) line.copy( data, 23 + i * llen );
 
-matches = bop.parse( data );
-
-log( '\n-> use #parse (overlapping sequences).' );
-
-log( '- bop.parse(data) matches:', matches.length );
-
-cnt = bop.count( data )
-
-log( '- bop.count(data):', cnt );
 
 matches = bop.sparse( data );
 
@@ -42,7 +33,7 @@ log( '\n-> use #sparse (no overlapping sequences).' );
 
 log( '- bop.sparse(data) matches:', matches.length );
 
-cnt = bop.count( data, 0, true )
+cnt = bop.scount( data, 0, true )
 
-log( '- bop.count(data, true):', cnt );
+log( '- bop.scount(data, true):', cnt );
 

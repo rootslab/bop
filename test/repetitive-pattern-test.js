@@ -50,3 +50,6 @@ assert.deepEqual( sresults, [ offset + 20, offset + 40 ], 'results don\'t match'
 log( '- counting matches (without overlapping sequences), they should be: %d', sresults.length );
 cnt = bop.scount( data, 0 );
 assert.ok( cnt[ 0 ] === sresults.length, 'erroneous #scount result!' );
+
+log( '- check remaining bytes, they should be: %d', data.length - sresults[ sresults.length - 1 ] - bpattern.length );
+assert.ok( cnt[ 1 ] === data.length - sresults[ sresults.length - 1 ] - bpattern.length, 'erroneous #scount result! is: ' + cnt[ 1 ] );
