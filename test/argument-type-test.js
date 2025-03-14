@@ -14,7 +14,7 @@ assert.doesNotThrow(
 log( '- passing a Buffer to constructor, doesn\'t throw an Error.' );
 assert.doesNotThrow(
   function() {
-    Bop( new Buffer( Date.now() + '' ) );
+    Bop( Buffer.alloc( Date.now() + '' ) );
   },
   'Test failed! An argument type different from String or Buffer, should throw an Error.'
 );

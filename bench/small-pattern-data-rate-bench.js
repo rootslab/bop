@@ -24,7 +24,7 @@ var log = console.log
                     Ipsum et Dolor sit amet, Quisquisce\r\n\r\n'
             ;
 
-        for ( var i = 0,  c = 1, t = new Buffer( tSize ); i + len < tSize; i += len  ){
+        for ( var i = 0,  c = 1, t = Buffer.alloc( tSize ); i + len < tSize; i += len  ){
             if ( ( i % ( gap ) ) === 0 ) {
                 t.write( p.toString() + str, i );
                 indexes.push( i );
@@ -55,7 +55,7 @@ process.argv.forEach( function ( val, index, array ) {
     ( index === 4 ) ? ( pattern = ( ( val.length > 1 ) && ( val.length < 255 ) ) ? ( '--' + val + '\r\n' ) : pattern ) : null;  
 } );
 
-var p = new Buffer( pattern )
+var p = Buffer.alloc( pattern.length, pattern )
     , msg = log( '- building test buffer' )
     , t = buildTestBuffer( p, bsize, gapfactor )
     , smem = process.memoryUsage()
