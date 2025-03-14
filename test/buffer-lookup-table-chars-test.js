@@ -1,8 +1,7 @@
-// ✔
 var log = console.log
     , assert = require( 'assert' )
     , Bop = require( '../' )
-    , bpattern = new Buffer( 255 )
+    , bpattern = Buffer.alloc( 255 )
     , bop = Bop( bpattern )
     , osize = 257
     ;
@@ -23,7 +22,7 @@ log( '- check 255th bad char table value, should be >= 0 and != undefined', bop.
 assert.notEqual( undefined, bop.bc[ 255 ], 'lookup table for this pattern should be 256 bytes long!' );
 
 log( '- test array creation if pattern length is >= 256' );
-bpattern = new Buffer( osize );
+bpattern = Buffer.alloc( osize );
 bop = Bop( bpattern );
 
 log( '- create %d pattern long, with all bytes equal to 0xff', bpattern.length );

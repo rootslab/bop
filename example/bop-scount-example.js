@@ -5,11 +5,11 @@
 var log = console.log
     , Bop = require( '../' )
     , hello = '------hello'
-    , line = new Buffer( hello + hello )
+    , line = Buffer.alloc(hello.length + hello.length, hello + hello)
     , bop = Bop( line )
     , llen = line.length
     , l = 8
-    , data = new Buffer( 230 + llen * l )
+    , data = Buffer.alloc(230 + llen * l)
     , i = 0
     , matches = null
     , cnt = -1
@@ -36,4 +36,3 @@ log( '- bop.sparse(data) matches:', matches.length );
 cnt = bop.scount( data, 0, true )
 
 log( '- bop.scount(data, true):', cnt );
-
